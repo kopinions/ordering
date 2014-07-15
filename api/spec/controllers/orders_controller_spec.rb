@@ -116,7 +116,18 @@ RSpec.describe OrdersController, :type => :controller do
           expect(@json["order_items"][0]["quantity"]).to eq(2)
         end
       end
+
+      context 'without order' do
+        before {
+          get :show, user_id: kayla.id, id: 'notexistorderindatabase'
+        }
+
+        it 'return 404' do
+          expect(response).to have_http_status(404)
+        end
+      end
     end
+
 
   end
 

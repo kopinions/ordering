@@ -1,6 +1,8 @@
 class OrdersController < ApplicationController
   before_action :get_user
-  
+  rescue_from Mongoid::Errors::DocumentNotFound, with: :order_not_found
+
+
   def index
     @orders = @user.orders
   end
@@ -33,5 +35,9 @@ class OrdersController < ApplicationController
   private
   def get_user
     @user = User.find(params[:user_id])
+  end
+
+  def order_not_found
+    response.status = 404
   end
 end
