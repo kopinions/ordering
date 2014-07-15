@@ -222,6 +222,10 @@ RSpec.describe OrdersController, :type => :controller do
             it 'return 200' do
               expect(response).to have_http_status(201)
             end
+
+            it 'return uri of create payment' do
+              expect(response.header['Location']).to end_with("/users/#{kayla.id}/orders/#{order.id}/payment")
+            end
           end
         end
       end

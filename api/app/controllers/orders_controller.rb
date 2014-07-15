@@ -29,6 +29,7 @@ class OrdersController < ApplicationController
 
   def payment
     if request.method == "POST"
+      response.location = payment_user_order_path @user, @order
       return head 201
     end
     @payment = @order.payment
