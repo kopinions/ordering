@@ -70,5 +70,15 @@ RSpec.describe ProductsController, :type => :controller do
         expect(@json["rating"]).to eq(apple.rating)
       end
     end
+
+    context 'with out product' do
+      before {
+        get :show, id: 'productnotexistindatabase'
+      }
+
+      it 'return 404' do
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 end
