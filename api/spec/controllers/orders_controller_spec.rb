@@ -211,6 +211,18 @@ RSpec.describe OrdersController, :type => :controller do
               expect(@json["payment"]["created_at"]).not_to be_nil
             end
           end
+
+          context 'post payment' do
+            before {
+              expect {
+                post :payment, user_id: kayla.id, id: order.id, pay_type: "CASH", amount: 20
+              }.not_to change{ Payment.count}
+            }
+
+            it 'return 400' do
+              expect(response).to have_http_status(400)
+            end
+          end
         end
 
         context 'without payment' do
