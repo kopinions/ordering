@@ -19,6 +19,10 @@ RSpec.describe ProductsController, :type => :controller do
       it 'return one product' do
         expect(@json.length).to eq(1)
       end
+
+      it 'contains uri' do
+        expect(@json[0]["uri"]).to end_with("/products/#{apple.id}")
+      end
     end
   end
 end
