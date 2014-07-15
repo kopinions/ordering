@@ -216,9 +216,9 @@ RSpec.describe OrdersController, :type => :controller do
         context 'without payment' do
           context 'create payment' do
             before {
-
+              expect(Payment).to receive(:new).with("pay_type" => "CASH", "amount"=> "20").and_call_original
               expect {
-                post :payment, user_id: kayla.id, id: order.id
+                post :payment, user_id: kayla.id, id: order.id, pay_type: "CASH", amount: 20
               }.to change{Payment.count}
             }
 
