@@ -41,6 +41,10 @@ RSpec.describe OrdersController, :type => :controller do
         it 'return total price' do
           expect(@json[0]["total_price"]).to eq(20)
         end
+
+        it 'return order create date' do
+          expect(@json[0]["created_at"]).not_to be_nil()
+        end
       end
     end
   end
