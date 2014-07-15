@@ -16,6 +16,6 @@ end
 
 node :order_items do |order|
     order.order_items.map do |item|
-        {amount: item.amount}
+        {amount: item.amount, product: {}, quantity: item.quantity}
     end
 end

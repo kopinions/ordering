@@ -92,6 +92,25 @@ RSpec.describe OrdersController, :type => :controller do
         it 'return order items' do
           expect(@json["order_items"].length).to eq(1)
         end
+
+
+        it 'return order item with product' do
+          expect(@json["order_items"][0]["product"]).not_to be_nil()
+        end
+
+        it 'return order item with amount' do
+          expect(@json["order_items"][0]["amount"]).to eq(20)
+        end
+
+
+        it 'return order item with amount' do
+          expect(@json["order_items"][0]["amount"]).to eq(20)
+        end
+
+
+        it 'return order item with quantity' do
+          expect(@json["order_items"][0]["quantity"]).to eq(2)
+        end
       end
     end
 
