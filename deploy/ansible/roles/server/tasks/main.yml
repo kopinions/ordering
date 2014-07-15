@@ -1,0 +1,58 @@
+---
+- name: install pkgs
+  apt: name={{item}}
+  sudo: yes
+  with_items:
+    - libsqlite3-dev
+    - g++
+    - git
+    - make
+
+- name: isntall ruby env
+  sudo: yes
+  sudo_user: vagrant
+  git: repo=git://github.com/sstephenson/rbenv.git dest={{rbenv_root}} update=no
+
+- name: install ruby-build
+  git: repo=git://github.com/sstephenson/ruby-build.git dest={{rbenv_root}}/plugins/ruby-build update=no
+
+- name: add rbenv init to ~/.bashrc
+  lineinfile: >
+    dest={{home_dir}}/.bashrc
+    line='eval "$(rbenv init -)"'
+    insertbefore=BOF
+    regexp=eval.*rbenv
+    create=yes
+    state=present
+
+- name: update PATH in ~/.bashrc for rbenv
+  lineinfile: >
+    dest={{home_dir}}/.bashrc
+    line=export\ PATH="{{rbenv_root}}/bin:$PATH"
+    insertbefore=BOF
+    regexp=PATH.*rbenv
+
+- name: check ruby {{ruby_version}} installed
+  shell: rbenv versions |grep {{ruby_version}}
+  register: ruby_version_installed
+  ignore_errors: yes
+  changed_when: false
+
+- name: install ruby {{ruby_version}}
+  shell: rbenv install {{ruby_version}}
+  when: ruby_version_installed | failed
+
+- name: check ruby global version is {{ruby_version}}
+  shell: rbenv global
+  register: ruby_global
+  changed_when: false
+
+- name: set ruby global to {{ruby_version}}
+  shell: rbenv global {{ruby_version}}
+  when: "ruby_version != ruby_global.stdout"
+
+- name: rehash rbenv {{ruby_version}}
+  shell: rbenv rehash
+  when: "ruby_version != ruby_global.stdout"
+
+- include: pull.yml

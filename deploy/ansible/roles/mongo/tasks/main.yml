@@ -1,0 +1,21 @@
+---
+- name: Add APT key
+  sudo: yes
+  apt_key: url=http://docs.mongodb.org/10gen-gpg-key.asc id=7F0CEB10
+
+- name: Add APT repository
+  sudo: yes
+  apt_repository: repo='deb http://downloads-distro.mongodb.org/repo/ubuntu-upstart dist 10gen' update_cache=yes
+
+- name: Install mongodb-org
+  sudo: yes
+  apt: name={{item}}
+  with_items:
+    - python-selinux
+    - python-pymongo
+    - mongodb-10gen
+
+- name: copy config file
+  sudo: yes
+  template: src=mongodb.conf.j2 dest=/etc/mongodb.conf owner=root group=root mode=0644
+  notify: restart mongodb

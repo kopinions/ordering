@@ -1,0 +1,7 @@
+---
+- name: pull code base
+  git: repo={{remote_code_base}} dest={{local_code_base}} update=yes
+
+- name: install gems for app
+  command: gem install bundler
+  sudo_user: vagrant
