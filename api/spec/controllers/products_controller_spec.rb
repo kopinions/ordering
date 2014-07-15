@@ -37,4 +37,17 @@ RSpec.describe ProductsController, :type => :controller do
       end
     end
   end
+
+  describe 'GET' do
+    context 'with apple' do
+      let!(:apple) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
+      before {
+        get :show, id: apple.id
+      }
+
+      it 'return 200' do
+        expect(response).to have_http_status(200)
+      end
+    end
+  end
 end
