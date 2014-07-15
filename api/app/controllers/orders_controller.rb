@@ -10,7 +10,14 @@ class OrdersController < ApplicationController
   end
 
   def create
+    order_items = order_items_params.map do |item|
+      product = Product.find(item[:product_id])
+      quantity = item[:quantity].to_i
+      amount = quantity * product.price.amount
+      order_item = OrderItem.new(product: product, quantity: quantity, amount: amount)
+    end
     order = Order.new(order_params)
+    order.order_items << order_items
     @user.orders << order
     response.location = user_order_path(@user, order)
     head 201
@@ -18,6 +25,10 @@ class OrdersController < ApplicationController
 
   def order_params
     params.permit(:name, :address, :phone)
+  end
+
+  def order_items_params
+    params.permit(order_items: [:product_id, :quantity])[:order_items]
   end
   private
   def get_user

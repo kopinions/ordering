@@ -124,17 +124,23 @@ RSpec.describe OrdersController, :type => :controller do
     context 'with kayla' do
       let!(:kayla){ User.create(name: 'kayla')}
 
-      context 'post to create order' do
-        before {
-          post :create, user_id: kayla.id
-        }
+      context 'with apple' do
+        let!(:apple) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
 
-        it 'return 201' do
-          expect(response).to have_http_status(201)
-        end
+        context 'post to create order' do
+          before {
+            expect(Order).to receive(:new).with({"name"=> "sofia", "address" => "chengdu", "phone" => "13898766789"}).and_call_original
+            expect(OrderItem).to receive(:new).with(hash_including({quantity: 2, amount: 20.0})).and_call_original
+            post :create, user_id: kayla.id, name: 'sofia', address: 'chengdu', phone: '13898766789', order_items: [{product_id: apple.id, quantity: 2}]
+          }
 
-        it 'return uri of create order' do
-          expect(response.header['Location']).to match(%{/users/#{kayla.id}/orders/.*{25}})
+          it 'return 201' do
+            expect(response).to have_http_status(201)
+          end
+
+          it 'return uri of create order' do
+            expect(response.header['Location']).to match(%{/users/#{kayla.id}/orders/.*{25}})
+          end
         end
       end
     end
