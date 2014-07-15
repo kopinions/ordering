@@ -8,6 +8,8 @@ class Order
   belongs_to :user
   embeds_many :order_items
 
+  has_one :payment
+
   def total_price
     sum = 0
     order_items.each {|item| sum = sum + item.amount}

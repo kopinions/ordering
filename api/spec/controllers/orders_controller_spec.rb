@@ -188,6 +188,10 @@ RSpec.describe OrdersController, :type => :controller do
           it 'return order uri' do
             expect(@json["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
           end
+
+          it 'return payment' do
+            expect(@json["payment"]).not_to be_nil
+          end
         end
       end
     end
