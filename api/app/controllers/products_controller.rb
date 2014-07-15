@@ -11,6 +11,7 @@ class ProductsController < ApplicationController
 
   def create
     product = Product.new(product_params)
+    product.create_price({amount: params.permit(:price), effect_date: Date.today})
     product.save
     head 201
   end

@@ -87,6 +87,7 @@ RSpec.describe ProductsController, :type => :controller do
       before {
         expect{
           expect(Product).to receive(:new).with({'name' => 'apple', 'description' => 'little apple'}).and_call_original
+          expect_any_instance_of(Product).to receive(:create_price).and_call_original
           post :create, name: 'apple', description: 'little apple', price: 10
         }.to change{ Product.count}
       }
