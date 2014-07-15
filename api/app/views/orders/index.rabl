@@ -1,2 +1,2 @@
 collection @orders
-attributes :name
+attributes :name, :address, :phone

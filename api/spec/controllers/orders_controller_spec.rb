@@ -19,6 +19,18 @@ RSpec.describe OrdersController, :type => :controller do
         it 'return one order' do
           expect(@json.length).to eq(1)
         end
+
+        it 'return name' do
+          expect(@json[0]["name"]).to eq(order.name)
+        end
+
+        it 'return address' do
+          expect(@json[0]["address"]).to eq(order.address)
+        end
+
+        it 'return phone' do
+          expect(@json[0]["phone"]).to eq(order.phone)
+        end
       end
     end
   end
