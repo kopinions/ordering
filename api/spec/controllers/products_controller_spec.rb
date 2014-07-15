@@ -95,6 +95,10 @@ RSpec.describe ProductsController, :type => :controller do
       it 'return 201' do
         expect(response).to have_http_status(201)
       end
+
+      it 'return location' do
+        expect(response.header["Location"]).to match(%{/products/.*{25}})
+      end
     end
   end
 end

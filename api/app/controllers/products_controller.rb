@@ -13,7 +13,8 @@ class ProductsController < ApplicationController
     product = Product.new(product_params)
     product.create_price({amount: params.permit(:price), effect_date: Date.today})
     product.save
-    head 201
+
+    head 201, location: (product_path product)
   end
 
   def product_params
