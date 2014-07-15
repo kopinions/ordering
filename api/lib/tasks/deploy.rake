@@ -3,16 +3,12 @@ ENVIRONMENTS = {
     :production => 'order_production'
 }
 
-
+remote_src_path='/home/vagrant/ordering/api'
 
 namespace :deploy do
   desc "test"
   task :deploy_test do
-    out = %x{ssh -i /Users/twer/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -p 2222 'cd /home/vagrant; ls > /dev/null; echo $?'}
-    unless out.strip. == '0'
-      puts "fails"
-      exit 1
-    end
+    out = system("ssh -i /Users/twer/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -p 2222 'cd /home/vagrant; ls > /dev/null; echo $?'")
   end
   ENVIRONMENTS.keys.each do |env|
     desc "Deploy to #{env}"
@@ -31,7 +27,7 @@ namespace :deploy do
       secret = SecureRandom.hex(64)
       system("echo SECRET_KEY_BASE=#{secret} > .env")
       puts "Copy secret file to remote machine"
-      system("scp  -P 2222  -i /Users/twer/.vagrant.d/insecure_private_key .env vagrant@127.0.0.1:/home/vagrant/ordering;")
+      system("scp  -P 2222  -i /Users/twer/.vagrant.d/insecure_private_key .env vagrant@127.0.0.1:#{remote_src_path};")
     end
   end
 
@@ -43,18 +39,8 @@ namespace :deploy do
   task :run, :env, :branch do |t, args|
     puts "Start to deploy"
     FileUtils.cd Rails.root do
-      status = %x{"ssh -i /Users/twer/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -p 2222 'cd /home/vagrant/ordering; bundle install --without test development > /dev/null; echo $?'"}
-      puts status
-      unless status.strip == "0"
-        puts "error when bundle install"
-        exit 1
-      end
-      start_status = %x{" ssh -i /Users/twer/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -p 2222 'cd /home/vagrant/ordering; nohup bundle exec rails server -d -e production </dev/null 2>&1 1>nohup.out & ; echo $?'"}
-      puts start_status
-      unless start_status.strip == "0"
-        puts "error when start server"
-        exit 1
-      end
+      status = system("ssh -i /Users/twer/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -p 2222 'cd #{remote_src_path}; bundle install --without test development'")
+      start_status = system(" ssh -i /Users/twer/.vagrant.d/insecure_private_key vagrant@127.0.0.1 -p 2222 'cd #{remote_src_path}; nohup bundle exec rails server -d -e production </dev/null 2>&1 1>nohup.out &'")
     end
   end
 end
