@@ -175,40 +175,53 @@ RSpec.describe OrdersController, :type => :controller do
         let!(:product) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
         let!(:order_items) {[OrderItem.new(product: product, amount: 20, quantity: 2)]}
         let!(:order){kayla.orders.create(name: 'sofia', address: 'shanghai', phone: '13256784321', order_items: order_items)}
-        let!(:payment) {order.create_payment(pay_type: 'CASH', amount: 20)}
+        context 'with payment' do
+          let!(:payment) {order.create_payment(pay_type: 'CASH', amount: 20)}
+          context 'get payment' do
+            before {
+              get :payment, user_id: kayla.id, id: order.id
+              @json = JSON.parse(response.body)
+            }
 
-        context 'get payment' do
-          before {
-            get :payment, user_id: kayla.id, id: order.id
-            @json = JSON.parse(response.body)
-          }
+            it 'return 200' do
+              expect(response).to have_http_status(200)
+            end
 
-          it 'return 200' do
-            expect(response).to have_http_status(200)
+            it 'return order uri' do
+              expect(@json["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
+            end
+
+            it 'return payment' do
+              expect(@json["payment"]).not_to be_nil
+            end
+
+            it 'return payment uri' do
+              expect(@json["payment"]["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}/payment")
+            end
+
+            it 'return payment pay type' do
+              expect(@json["payment"]["pay_type"]).to eq(payment.pay_type)
+            end
+
+            it 'return payment amount' do
+              expect(@json["payment"]["amount"]).to eq(payment.amount)
+            end
+
+            it 'return payment created at' do
+              expect(@json["payment"]["created_at"]).not_to be_nil
+            end
           end
+        end
 
-          it 'return order uri' do
-            expect(@json["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
-          end
+        context 'without payment' do
+          context 'create payment' do
+            before {
+              post :payment, user_id: kayla.id, id: order.id
+            }
 
-          it 'return payment' do
-            expect(@json["payment"]).not_to be_nil
-          end
-
-          it 'return payment uri' do
-            expect(@json["payment"]["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}/payment")
-          end
-
-          it 'return payment pay type' do
-            expect(@json["payment"]["pay_type"]).to eq(payment.pay_type)
-          end
-
-          it 'return payment amount' do
-            expect(@json["payment"]["amount"]).to eq(payment.amount)
-          end
-
-          it 'return payment created at' do
-            expect(@json["payment"]["created_at"]).not_to be_nil
+            it 'return 200' do
+              expect(response).to have_http_status(201)
+            end
           end
         end
       end

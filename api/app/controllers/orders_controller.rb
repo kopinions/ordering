@@ -28,6 +28,9 @@ class OrdersController < ApplicationController
 
 
   def payment
+    if request.method == "POST"
+      return head 201
+    end
     @payment = @order.payment
   end
 
