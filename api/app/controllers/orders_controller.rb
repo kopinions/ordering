@@ -10,9 +10,15 @@ class OrdersController < ApplicationController
   end
 
   def create
+    order = Order.new(order_params)
+    @user.orders << order
+    response.location = user_order_path(@user, order)
     head 201
   end
 
+  def order_params
+    params.permit(:name, :address, :phone)
+  end
   private
   def get_user
     @user = User.find(params[:user_id])
