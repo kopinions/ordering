@@ -1,5 +1,9 @@
 source 'https://rubygems.org'
 
+
+
+gem 'therubyracer'
+gem 'execjs'
 gem 'mongoid', '~> 4.0.0'
 gem 'bson_ext'
 gem "rspec-rails", :group => [:development, :test]
