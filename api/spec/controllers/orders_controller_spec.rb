@@ -9,41 +9,58 @@ RSpec.describe OrdersController, :type => :controller do
         let!(:product) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
         let!(:order_items) {[OrderItem.new(product: product, amount: 20, quantity: 2)]}
         let!(:order){kayla.orders.create(name: 'sofia', address: 'shanghai', phone: '13256784321', order_items: order_items)}
-        before {
-          get :index, user_id: kayla.id
-          @json = JSON.parse(response.body)
-        }
+        context 'get with json' do
+          before {
+            get :index, user_id: kayla.id, format: :json
+            @json = JSON.parse(response.body)
+          }
 
-        it 'return 200' do
-          expect(response).to have_http_status(200)
+          it 'return 200' do
+            expect(response).to have_http_status(200)
+          end
+
+          it 'return one order' do
+            expect(@json.length).to eq(1)
+          end
+
+          it 'return name' do
+            expect(@json[0]["name"]).to eq(order.name)
+          end
+
+          it 'return address' do
+            expect(@json[0]["address"]).to eq(order.address)
+          end
+
+          it 'return phone' do
+            expect(@json[0]["phone"]).to eq(order.phone)
+          end
+
+          it 'return order uri' do
+            expect(@json[0]["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
+          end
+
+          it 'return total price' do
+            expect(@json[0]["total_price"]).to eq(20)
+          end
+
+          it 'return order create date' do
+            expect(@json[0]["created_at"]).not_to be_nil()
+          end
         end
 
-        it 'return one order' do
-          expect(@json.length).to eq(1)
-        end
+        context 'get with xml' do
+          before {
+            get :index, user_id: kayla.id, format: :xml
+            @xml = Hash.from_xml(response.body)
+          }
 
-        it 'return name' do
-          expect(@json[0]["name"]).to eq(order.name)
-        end
+          it 'return 200' do
+            expect(response).to have_http_status(200)
+          end
 
-        it 'return address' do
-          expect(@json[0]["address"]).to eq(order.address)
-        end
-
-        it 'return phone' do
-          expect(@json[0]["phone"]).to eq(order.phone)
-        end
-
-        it 'return order uri' do
-          expect(@json[0]["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
-        end
-
-        it 'return total price' do
-          expect(@json[0]["total_price"]).to eq(20)
-        end
-
-        it 'return order create date' do
-          expect(@json[0]["created_at"]).not_to be_nil()
+          it 'return orders' do
+            expect(@xml["orders"].length).to eq(1)
+          end
         end
       end
     end
@@ -166,7 +183,6 @@ RSpec.describe OrdersController, :type => :controller do
       end
     end
   end
-
 
   describe 'Payment' do
     context 'with kayla' do
