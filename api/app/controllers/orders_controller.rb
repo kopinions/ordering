@@ -6,7 +6,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    head 200
+    @order = @user.orders.find(params[:id])
   end
 
   private

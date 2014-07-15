@@ -58,12 +58,16 @@ RSpec.describe OrdersController, :type => :controller do
         let!(:order){kayla.orders.create(name: 'sofia', address: 'shanghai', phone: '13256784321', order_items: order_items)}
         before {
           get :show, user_id: kayla.id, id: order.id
+          @json = JSON.parse(response.body)
         }
 
         it 'return 200' do
           expect(response).to have_http_status(200)
         end
 
+        it 'return name' do
+          expect(@json["name"]).to eq(order.name)
+        end
       end
     end
 
