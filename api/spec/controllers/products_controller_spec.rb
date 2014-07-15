@@ -40,7 +40,7 @@ RSpec.describe ProductsController, :type => :controller do
 
   describe 'GET' do
     context 'with apple' do
-      let!(:apple) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
+      let!(:apple) {Product.create(name: 'apple', description: 'little apple', rating: 2, price: Price.new(amount: 10))}
       before {
         get :show, id: apple.id
         @json = JSON.parse(response.body)
@@ -52,6 +52,22 @@ RSpec.describe ProductsController, :type => :controller do
 
       it 'contain uri' do
         expect(@json["uri"]).to end_with("/products/#{apple.id}")
+      end
+
+      it 'contain name' do
+        expect(@json["name"]).to eq(apple.name)
+      end
+
+      it 'contain description' do
+        expect(@json["description"]).to eq(apple.description)
+      end
+
+      it 'contain price' do
+        expect(@json["price"]).to eq(apple.price.amount)
+      end
+
+      it 'contain rating' do
+        expect(@json["rating"]).to eq(apple.rating)
       end
     end
   end

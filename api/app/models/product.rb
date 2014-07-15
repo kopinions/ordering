@@ -3,6 +3,6 @@ class Product
   include Mongoid::Timestamps
   field :name, type: String
   field :description, type: String
-
+  field :rating, type: Integer
   embeds_one :price
 end
