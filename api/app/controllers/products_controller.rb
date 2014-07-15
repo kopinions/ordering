@@ -9,6 +9,10 @@ class ProductsController < ApplicationController
     @product = Product.find(params[:id])
   end
 
+  def create
+    head 201
+  end
+
   private
   def product_not_found
     response.status = 404
