@@ -206,6 +206,10 @@ RSpec.describe OrdersController, :type => :controller do
           it 'return payment amount' do
             expect(@json["payment"]["amount"]).to eq(payment.amount)
           end
+
+          it 'return payment created at' do
+            expect(@json["payment"]["created_at"]).not_to be_nil
+          end
         end
       end
     end
