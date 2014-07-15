@@ -43,10 +43,15 @@ RSpec.describe ProductsController, :type => :controller do
       let!(:apple) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
       before {
         get :show, id: apple.id
+        @json = JSON.parse(response.body)
       }
 
       it 'return 200' do
         expect(response).to have_http_status(200)
+      end
+
+      it 'contain uri' do
+        expect(@json["uri"]).to end_with("/products/#{apple.id}")
       end
     end
   end

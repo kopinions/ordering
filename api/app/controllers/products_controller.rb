@@ -5,6 +5,6 @@ class ProductsController < ApplicationController
   end
 
   def show
-    head 200
+    @product = Product.find(params[:id])
   end
 end
