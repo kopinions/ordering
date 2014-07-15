@@ -1,5 +1,6 @@
 class OrdersController < ApplicationController
   before_action :get_user
+  before_action :set_order, only: [:payment, :show]
   rescue_from Mongoid::Errors::DocumentNotFound, with: :order_not_found
 
 
@@ -8,7 +9,7 @@ class OrdersController < ApplicationController
   end
 
   def show
-    @order = @user.orders.find(params[:id])
+
   end
 
   def create
@@ -27,7 +28,7 @@ class OrdersController < ApplicationController
 
 
   def payment
-    head 200
+
   end
 
   def order_params
@@ -37,6 +38,12 @@ class OrdersController < ApplicationController
   def order_items_params
     params.permit(order_items: [:product_id, :quantity])[:order_items]
   end
+
+  private
+  def set_order
+    @order = @user.orders.find(params[:id])
+  end
+
   private
   def get_user
     @user = User.find(params[:user_id])

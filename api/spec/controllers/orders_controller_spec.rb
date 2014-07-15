@@ -178,10 +178,15 @@ RSpec.describe OrdersController, :type => :controller do
         context 'get payment' do
           before {
             get :payment, user_id: kayla.id, id: order.id
+            @json = JSON.parse(response.body)
           }
 
           it 'return 200' do
             expect(response).to have_http_status(200)
+          end
+
+          it 'return order uri' do
+            expect(@json["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
           end
         end
       end
