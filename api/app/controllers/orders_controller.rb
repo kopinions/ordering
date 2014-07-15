@@ -9,6 +9,10 @@ class OrdersController < ApplicationController
     @order = @user.orders.find(params[:id])
   end
 
+  def create
+    head 201
+  end
+
   private
   def get_user
     @user = User.find(params[:user_id])
