@@ -1,5 +1,5 @@
 collection @products
-attributes :name
+attributes :name, :description
 
 node :uri do |product|
     product_path product

@@ -23,6 +23,14 @@ RSpec.describe ProductsController, :type => :controller do
       it 'contains uri' do
         expect(@json[0]["uri"]).to end_with("/products/#{apple.id}")
       end
+
+      it 'contain name' do
+        expect(@json[0]["name"]).to eq(apple.name)
+      end
+
+      it 'contain description' do
+        expect(@json[0]["description"]).to eq(apple.description)
+      end
     end
   end
 end
