@@ -5,6 +5,10 @@ class OrdersController < ApplicationController
     @orders = @user.orders
   end
 
+  def show
+    head 200
+  end
+
   private
   def get_user
     @user = User.find(params[:user_id])
