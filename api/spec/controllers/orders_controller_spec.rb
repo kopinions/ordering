@@ -128,7 +128,15 @@ RSpec.describe OrdersController, :type => :controller do
       end
     end
 
+    context 'without user' do
+      before {
+        get :show, user_id: "notexistuserindatabase", id: 'notexistorderindatabase'
+      }
 
+      it 'return 404' do
+        expect(response).to have_http_status(404)
+      end
+    end
   end
 
   describe 'POST' do
