@@ -4,5 +4,5 @@ node :uri do
 end
 
 node :payment do |payment|
-    {uri: (payment_user_order_path @user, @order), pay_type: payment.pay_type}
+    {uri: (payment_user_order_path @user, @order), pay_type: payment.pay_type, amount: payment.amount}
 end

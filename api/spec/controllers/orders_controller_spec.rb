@@ -202,6 +202,10 @@ RSpec.describe OrdersController, :type => :controller do
           it 'return payment pay type' do
             expect(@json["payment"]["pay_type"]).to eq(payment.pay_type)
           end
+
+          it 'return payment amount' do
+            expect(@json["payment"]["amount"]).to eq(payment.amount)
+          end
         end
       end
     end
