@@ -85,7 +85,10 @@ RSpec.describe ProductsController, :type => :controller do
   describe 'POST' do
     context 'create product' do
       before {
-        post :create
+        expect{
+          expect(Product).to receive(:new).with({'name' => 'apple', 'description' => 'little apple'}).and_call_original
+          post :create, name: 'apple', description: 'little apple', price: 10
+        }.to change{ Product.count}
       }
 
       it 'return 201' do

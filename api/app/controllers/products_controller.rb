@@ -10,9 +10,14 @@ class ProductsController < ApplicationController
   end
 
   def create
+    product = Product.new(product_params)
+    product.save
     head 201
   end
 
+  def product_params
+    params.permit(:name, :description)
+  end
   private
   def product_not_found
     response.status = 404
