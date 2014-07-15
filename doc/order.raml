@@ -1,0 +1,129 @@
+#%RAML 0.8
+title: Order System API
+mediaType: application/json
+
+/products:
+  get:
+    description: As a customer I can get all the products then I can get products to buy.
+    responses:
+      200:
+        body:
+          application/json:
+            example: |
+              [
+                {
+                  "uri": "/products/1",
+                  "name": "apple",
+                  "description": "red apple",
+                  "currentPrice": 1.1
+                }
+              ]
+  post:
+    description: As a admin I can create a product so that customer can buy the product
+    body:
+      application/x-www-form-urlencoded:
+        formParameters:
+          name:
+            type: string
+          description:
+            type: string
+          currentPrice:
+            type: number
+    responses:
+      201:
+  /{productId}:
+    get:
+      description: As a customer I can view the product detail so that I can decide whether to buy the product or not.
+      responses:
+        200:
+          body:
+            application/json:
+              example: |
+                {
+                  "uri": "/products/1",
+                  "name": "apple",
+                  "description": "red apple",
+                  "current_price": 1.1,
+                  "rating": 5
+                }
+/users:
+  /{id}:
+    /orders:
+      post:
+        description: As a customer I can create an order to buy some product
+        body:
+          application/json:
+            example: |
+              {
+                "name": "kayla",
+                "address": "beijing",
+                "phone": "13200000000",
+                "order_item": [
+                  {
+                    "product_id": "1",
+                    "quantity": 2
+                  }
+                ]
+              }
+      get:
+        description: As a customer I can review the orders so that I can know when and how much I have spend
+        responses:
+          200:
+            body:
+              application/json:
+                example: |
+                  [
+                    {
+                      "uri": "/users/1/orders/1",
+                      "total_price": 100,
+                      "date": "2014-01-01"
+                    }
+                  ]
+
+      /{orderId}:
+        get:
+          description: As a customer I can view the order detail so that I can know what product I have bought.
+          responses:
+            200:
+              body:
+                application/json:
+                  example: |
+                    {
+                      "uri": "/users/1/orders/1",
+                      "total_price": 100,
+                      "date": "2014-01-01",
+                      "order_items": [
+                        {
+                          "product_id": 1,
+                          "quantity": 2,
+                          "amount": 100
+                        }
+                      ]
+                    }
+        /payment:
+          post:
+            description: As a customer I can pay for my order so that I can receive the product.
+            body:
+              application/x-www-form-urlencoded:
+                formParameters:
+                  pay_type:
+                    type: string
+                  amount:
+                    type: number
+            responses:
+              201:
+          get:
+             description: As a customer I can view the payment of the order to know whether I have payed for the order
+             responses:
+               200:
+                 body:
+                   application/json:
+                     example: |
+                       {
+                         "uri": "/users/1/orders/1",
+                         "payment": {
+                           "uri": "/users/1/orders/1/payment"
+                           "pay_type": "CASH",
+                           "amount": 100
+                         }
+                       }

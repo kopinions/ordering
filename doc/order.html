@@ -1,0 +1,1065 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Order System API API documentation</title>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta name="generator" content="https://github.com/kevinrenskers/raml2html">
+
+    <script type="text/javascript">
+        var protocol = ((document.location.protocol === 'https:') ? 'https:': 'http:');
+        document.write('<link rel="stylesheet" href="' + protocol + '//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css">');
+        document.write('<link rel="stylesheet" href="' + protocol + '//yandex.st/highlightjs/8.0/styles/github.min.css">');
+        document.write('<script type="text/javascript" src="' + protocol + '//code.jquery.com/jquery-1.11.0.min.js"><\/sc' + 'ript>');
+        document.write('<script type="text/javascript" src="' + protocol + '//netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"><\/sc' + 'ript>');
+    </script>
+
+    <style>
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .block > .badge {
+            float: right;
+            margin-left: 5px;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .block .badge {
+            visibility: hidden;
+        }
+        .block.collapsed .badge {
+            visibility: visible;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .block {
+            display: block;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+    </style>
+</head>
+
+<body data-spy="scroll" data-target="#sidebar">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-9" role="main">
+                <div class="page-header">
+                    <h1>Order System API API documentation</h1>
+                    <p></p>
+
+                    
+                </div>
+
+                
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="_products" class="panel-title">/products</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            
+
+                            <div class="panel-group">
+                                <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__products">
+                
+                    <span class="badge badge_get">get</span>
+                
+                    <span class="badge badge_post">post</span>
+                
+                <span class="parent"></span>/products
+            </a>
+        </h4>
+    </div>
+    <div id="panel__products" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+                    <a href="#" data-toggle="modal" data-target="#_products_get" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+                        As a customer I can get all the products then I can get products to buy.
+                    </a>
+                
+                    <a href="#" data-toggle="modal" data-target="#_products_post" class="list-group-item">
+                        <span class="badge badge_post">post</span>
+                        As a admin I can create a product so that customer can buy the product
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="modal fade" id="_products_get">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent"></span>/products
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can get all the products then I can get products to buy.</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_products_get_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_products_get_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_products_get_request">
+                                
+
+                                
+
+                                
+
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_products_get_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                                        
+
+                                        
+
+                                        
+                                            <h3>Body</h3>
+                                            
+                                                <p><strong>Type: application/json</strong></p>
+                                                
+                                                
+                                                    <strong>Example:</strong>
+                                                    <pre>[
+  {
+    "<span class="hljs-attribute">uri</span>": <span class="hljs-value"><span class="hljs-string">"/products/1"</span></span>,
+    "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"apple"</span></span>,
+    "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"red apple"</span></span>,
+    "<span class="hljs-attribute">currentPrice</span>": <span class="hljs-value"><span class="hljs-number">1.1</span>
+  </span>}
+]
+</pre>
+                                                
+                                            
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal fade" id="_products_post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post</span>
+                            <span class="parent"></span>/products
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a admin I can create a product so that customer can buy the product</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_products_post_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_products_post_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_products_post_request">
+                                
+
+                                
+
+                                
+
+                                
+                                    <h3>Body</h3>
+                                    
+                                        <p><strong>Type: application/x-www-form-urlencoded</strong></p>
+                                        
+                                            <strong>Form Parameters</strong>
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <strong>name</strong>
+                                                        <em>
+                                                            
+                                                            
+                                                                (string)
+                                                            
+                                                        </em>
+
+                                                        
+                                                        
+                                                        
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <strong>description</strong>
+                                                        <em>
+                                                            
+                                                            
+                                                                (string)
+                                                            
+                                                        </em>
+
+                                                        
+                                                        
+                                                        
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <strong>currentPrice</strong>
+                                                        <em>
+                                                            
+                                                            
+                                                                (number)
+                                                            
+                                                        </em>
+
+                                                        
+                                                        
+                                                        
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                        
+                                        
+                                    
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_products_post_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2>
+                                        
+
+                                        
+
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+
+    <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__products__productId_">
+                
+                    <span class="badge badge_get">get</span>
+                
+                <span class="parent">/products</span>/{productId}
+            </a>
+        </h4>
+    </div>
+    <div id="panel__products__productId_" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+                    <a href="#" data-toggle="modal" data-target="#_products__productId__get" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+                        As a customer I can view the product detail so that I can decide whether to buy the product or not.
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="modal fade" id="_products__productId__get">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent">/products</span>/{productId}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can view the product detail so that I can decide whether to buy the product or not.</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_products__productId__get_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_products__productId__get_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_products__productId__get_request">
+                                
+                                    <h3>URI Parameters</h3>
+                                    <ul>
+                                        
+                                            <li><strong>productId</strong>: string</li>
+                                        
+                                    </ul>
+                                
+
+                                
+
+                                
+
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_products__productId__get_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                                        
+
+                                        
+
+                                        
+                                            <h3>Body</h3>
+                                            
+                                                <p><strong>Type: application/json</strong></p>
+                                                
+                                                
+                                                    <strong>Example:</strong>
+                                                    <pre>{
+  "<span class="hljs-attribute">uri</span>": <span class="hljs-value"><span class="hljs-string">"/products/1"</span></span>,
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"apple"</span></span>,
+  "<span class="hljs-attribute">description</span>": <span class="hljs-value"><span class="hljs-string">"red apple"</span></span>,
+  "<span class="hljs-attribute">current_price</span>": <span class="hljs-value"><span class="hljs-number">1.1</span></span>,
+  "<span class="hljs-attribute">rating</span>": <span class="hljs-value"><span class="hljs-number">5</span>
+</span>}
+</pre>
+                                                
+                                            
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <h3 id="_users" class="panel-title">/users</h3>
+                        </div>
+
+                        <div class="panel-body">
+                            
+
+                            <div class="panel-group">
+                                <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__users">
+                
+                <span class="parent"></span>/users
+            </a>
+        </h4>
+    </div>
+    <div id="panel__users" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+    <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__users__id_">
+                
+                <span class="parent">/users</span>/{id}
+            </a>
+        </h4>
+    </div>
+    <div id="panel__users__id_" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+
+    <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__users__id__orders">
+                
+                    <span class="badge badge_post">post</span>
+                
+                    <span class="badge badge_get">get</span>
+                
+                <span class="parent">/users/{id}</span>/orders
+            </a>
+        </h4>
+    </div>
+    <div id="panel__users__id__orders" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+                    <a href="#" data-toggle="modal" data-target="#_users__id__orders_post" class="list-group-item">
+                        <span class="badge badge_post">post</span>
+                        As a customer I can create an order to buy some product
+                    </a>
+                
+                    <a href="#" data-toggle="modal" data-target="#_users__id__orders_get" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+                        As a customer I can review the orders so that I can know when and how much I have spend
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="modal fade" id="_users__id__orders_post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post</span>
+                            <span class="parent">/users/{id}</span>/orders
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can create an order to buy some product</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_users__id__orders_post_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_users__id__orders_post_request">
+                                
+                                    <h3>URI Parameters</h3>
+                                    <ul>
+                                        
+                                            <li><strong>id</strong>: string</li>
+                                        
+                                    </ul>
+                                
+
+                                
+
+                                
+
+                                
+                                    <h3>Body</h3>
+                                    
+                                        <p><strong>Type: application/json</strong></p>
+                                        
+                                        
+                                        
+                                            <strong>Example:</strong>
+                                            <pre>{
+  "<span class="hljs-attribute">name</span>": <span class="hljs-value"><span class="hljs-string">"kayla"</span></span>,
+  "<span class="hljs-attribute">address</span>": <span class="hljs-value"><span class="hljs-string">"beijing"</span></span>,
+  "<span class="hljs-attribute">phone</span>": <span class="hljs-value"><span class="hljs-string">"13200000000"</span></span>,
+  "<span class="hljs-attribute">order_item</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">product_id</span>": <span class="hljs-value"><span class="hljs-string">"1"</span></span>,
+      "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">2</span>
+    </span>}
+  ]
+</span>}
+</pre>
+                                        
+                                    
+                                
+                            </div>
+
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal fade" id="_users__id__orders_get">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent">/users/{id}</span>/orders
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can review the orders so that I can know when and how much I have spend</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_users__id__orders_get_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_users__id__orders_get_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_users__id__orders_get_request">
+                                
+                                    <h3>URI Parameters</h3>
+                                    <ul>
+                                        
+                                            <li><strong>id</strong>: string</li>
+                                        
+                                    </ul>
+                                
+
+                                
+
+                                
+
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_users__id__orders_get_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                                        
+
+                                        
+
+                                        
+                                            <h3>Body</h3>
+                                            
+                                                <p><strong>Type: application/json</strong></p>
+                                                
+                                                
+                                                    <strong>Example:</strong>
+                                                    <pre>[
+  {
+    "<span class="hljs-attribute">uri</span>": <span class="hljs-value"><span class="hljs-string">"/users/1/orders/1"</span></span>,
+    "<span class="hljs-attribute">total_price</span>": <span class="hljs-value"><span class="hljs-number">100</span></span>,
+    "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2014-01-01"</span>
+  </span>}
+]
+</pre>
+                                                
+                                            
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+
+    <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__users__id__orders__orderId_">
+                
+                    <span class="badge badge_get">get</span>
+                
+                <span class="parent">/users/{id}/orders</span>/{orderId}
+            </a>
+        </h4>
+    </div>
+    <div id="panel__users__id__orders__orderId_" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+                    <a href="#" data-toggle="modal" data-target="#_users__id__orders__orderId__get" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+                        As a customer I can view the order detail so that I can know what product I have bought.
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="modal fade" id="_users__id__orders__orderId__get">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent">/users/{id}/orders</span>/{orderId}
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can view the order detail so that I can know what product I have bought.</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_users__id__orders__orderId__get_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_users__id__orders__orderId__get_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_users__id__orders__orderId__get_request">
+                                
+                                    <h3>URI Parameters</h3>
+                                    <ul>
+                                        
+                                            <li><strong>id</strong>: string</li>
+                                        
+                                            <li><strong>orderId</strong>: string</li>
+                                        
+                                    </ul>
+                                
+
+                                
+
+                                
+
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_users__id__orders__orderId__get_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                                        
+
+                                        
+
+                                        
+                                            <h3>Body</h3>
+                                            
+                                                <p><strong>Type: application/json</strong></p>
+                                                
+                                                
+                                                    <strong>Example:</strong>
+                                                    <pre>{
+  "<span class="hljs-attribute">uri</span>": <span class="hljs-value"><span class="hljs-string">"/users/1/orders/1"</span></span>,
+  "<span class="hljs-attribute">total_price</span>": <span class="hljs-value"><span class="hljs-number">100</span></span>,
+  "<span class="hljs-attribute">date</span>": <span class="hljs-value"><span class="hljs-string">"2014-01-01"</span></span>,
+  "<span class="hljs-attribute">order_items</span>": <span class="hljs-value">[
+    {
+      "<span class="hljs-attribute">product_id</span>": <span class="hljs-value"><span class="hljs-number">1</span></span>,
+      "<span class="hljs-attribute">quantity</span>": <span class="hljs-value"><span class="hljs-number">2</span></span>,
+      "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">100</span>
+    </span>}
+  ]
+</span>}
+</pre>
+                                                
+                                            
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+
+    <div class="panel panel-white">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a class="block collapsed" data-toggle="collapse" href="#panel__users__id__orders__orderId__payment">
+                
+                    <span class="badge badge_post">post</span>
+                
+                    <span class="badge badge_get">get</span>
+                
+                <span class="parent">/users/{id}/orders/{orderId}</span>/payment
+            </a>
+        </h4>
+    </div>
+    <div id="panel__users__id__orders__orderId__payment" class="panel-collapse collapse">
+        <div class="panel-body">
+            <div class="list-group">
+                
+                    <a href="#" data-toggle="modal" data-target="#_users__id__orders__orderId__payment_post" class="list-group-item">
+                        <span class="badge badge_post">post</span>
+                        As a customer I can pay for my order so that I can receive the product.
+                    </a>
+                
+                    <a href="#" data-toggle="modal" data-target="#_users__id__orders__orderId__payment_get" class="list-group-item">
+                        <span class="badge badge_get">get</span>
+                        As a customer I can view the payment of the order to know whether I have payed for the order
+                    </a>
+                
+            </div>
+        </div>
+    </div>
+
+    
+        <div class="modal fade" id="_users__id__orders__orderId__payment_post">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_post">post</span>
+                            <span class="parent">/users/{id}/orders/{orderId}</span>/payment
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can pay for my order so that I can receive the product.</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_users__id__orders__orderId__payment_post_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_users__id__orders__orderId__payment_post_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_users__id__orders__orderId__payment_post_request">
+                                
+                                    <h3>URI Parameters</h3>
+                                    <ul>
+                                        
+                                            <li><strong>id</strong>: string</li>
+                                        
+                                            <li><strong>orderId</strong>: string</li>
+                                        
+                                    </ul>
+                                
+
+                                
+
+                                
+
+                                
+                                    <h3>Body</h3>
+                                    
+                                        <p><strong>Type: application/x-www-form-urlencoded</strong></p>
+                                        
+                                            <strong>Form Parameters</strong>
+                                            <ul>
+                                                
+                                                    <li>
+                                                        <strong>pay_type</strong>
+                                                        <em>
+                                                            
+                                                            
+                                                                (string)
+                                                            
+                                                        </em>
+
+                                                        
+                                                        
+                                                        
+                                                    </li>
+                                                
+                                                    <li>
+                                                        <strong>amount</strong>
+                                                        <em>
+                                                            
+                                                            
+                                                                (number)
+                                                            
+                                                        </em>
+
+                                                        
+                                                        
+                                                        
+                                                    </li>
+                                                
+                                            </ul>
+                                        
+                                        
+                                        
+                                    
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_users__id__orders__orderId__payment_post_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/201" target="_blank">201</a></h2>
+                                        
+
+                                        
+
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="modal fade" id="_users__id__orders__orderId__payment_get">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                        <h4 class="modal-title" id="myModalLabel">
+                            <span class="badge badge_get">get</span>
+                            <span class="parent">/users/{id}/orders/{orderId}</span>/payment
+                        </h4>
+                    </div>
+                    <div class="modal-body">
+                        <div class="alert alert-info"><p>As a customer I can view the payment of the order to know whether I have payed for the order</p>
+</div>
+
+                        <!-- Nav tabs -->
+                        <ul class="nav nav-tabs">
+                            <li class="active">
+                                <a href="#_users__id__orders__orderId__payment_get_request" data-toggle="tab">Request</a>
+                            </li>
+                            
+                                <li>
+                                    <a href="#_users__id__orders__orderId__payment_get_response" data-toggle="tab">Response</a>
+                                </li>
+                            
+                        </ul>
+
+                        <!-- Tab panes -->
+                        <div class="tab-content">
+                            <div class="tab-pane active" id="_users__id__orders__orderId__payment_get_request">
+                                
+                                    <h3>URI Parameters</h3>
+                                    <ul>
+                                        
+                                            <li><strong>id</strong>: string</li>
+                                        
+                                            <li><strong>orderId</strong>: string</li>
+                                        
+                                    </ul>
+                                
+
+                                
+
+                                
+
+                                
+                            </div>
+
+                            
+                                <div class="tab-pane" id="_users__id__orders__orderId__payment_get_response">
+                                    
+                                        <h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2>
+                                        
+
+                                        
+
+                                        
+                                            <h3>Body</h3>
+                                            
+                                                <p><strong>Type: application/json</strong></p>
+                                                
+                                                
+                                                    <strong>Example:</strong>
+                                                    <pre>{
+  "<span class="hljs-attribute">uri</span>": <span class="hljs-value"><span class="hljs-string">"/users/1/orders/1"</span></span>,
+  "<span class="hljs-attribute">payment</span>": <span class="hljs-value">{
+    "<span class="hljs-attribute">uri</span>": <span class="hljs-value"><span class="hljs-string">"/users/1/orders/1/payment"</span>
+    <span class="hljs-string">"pay_type"</span>: <span class="hljs-string">"CASH"</span></span>,
+    "<span class="hljs-attribute">amount</span>": <span class="hljs-value"><span class="hljs-number">100</span>
+  </span>}
+</span>}
+</pre>
+                                                
+                                            
+                                        
+                                    
+                                </div>
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                            </div>
+                        </div>
+                    </div>
+                
+            </div>
+
+            <div class="col-md-3">
+                <div id="sidebar" class="hidden-print affix" role="complementary">
+                    <ul class="nav nav-pills nav-stacked">
+                        
+                            <li><a href="#_products">/products</a></li>
+                        
+                            <li><a href="#_users">/users</a></li>
+                        
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
