@@ -31,6 +31,10 @@ RSpec.describe OrdersController, :type => :controller do
         it 'return phone' do
           expect(@json[0]["phone"]).to eq(order.phone)
         end
+
+        it 'return order uri' do
+          expect(@json[0]["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
+        end
       end
     end
   end
