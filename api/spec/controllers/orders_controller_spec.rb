@@ -68,6 +68,26 @@ RSpec.describe OrdersController, :type => :controller do
         it 'return name' do
           expect(@json["name"]).to eq(order.name)
         end
+
+        it 'return address' do
+          expect(@json["address"]).to eq(order.address)
+        end
+
+        it 'return phone' do
+          expect(@json["phone"]).to eq(order.phone)
+        end
+
+        it 'return order uri' do
+          expect(@json["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}")
+        end
+
+        it 'return total price' do
+          expect(@json["total_price"]).to eq(20)
+        end
+
+        it 'return order create date' do
+          expect(@json["created_at"]).not_to be_nil()
+        end
       end
     end
 
