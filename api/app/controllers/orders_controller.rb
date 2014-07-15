@@ -28,7 +28,7 @@ class OrdersController < ApplicationController
 
 
   def payment
-
+    @payment = @order.payment
   end
 
   def order_params

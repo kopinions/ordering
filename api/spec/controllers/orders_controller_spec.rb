@@ -175,6 +175,8 @@ RSpec.describe OrdersController, :type => :controller do
         let!(:product) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
         let!(:order_items) {[OrderItem.new(product: product, amount: 20, quantity: 2)]}
         let!(:order){kayla.orders.create(name: 'sofia', address: 'shanghai', phone: '13256784321', order_items: order_items)}
+        let!(:payment) {order.create_payment(pay_type: 'CASH', amount: 20)}
+
         context 'get payment' do
           before {
             get :payment, user_id: kayla.id, id: order.id
@@ -195,6 +197,10 @@ RSpec.describe OrdersController, :type => :controller do
 
           it 'return payment uri' do
             expect(@json["payment"]["uri"]).to end_with("/users/#{kayla.id}/orders/#{order.id}/payment")
+          end
+
+          it 'return payment pay type' do
+            expect(@json["payment"]["pay_type"]).to eq(payment.pay_type)
           end
         end
       end
