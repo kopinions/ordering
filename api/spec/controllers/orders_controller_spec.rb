@@ -216,7 +216,10 @@ RSpec.describe OrdersController, :type => :controller do
         context 'without payment' do
           context 'create payment' do
             before {
-              post :payment, user_id: kayla.id, id: order.id
+
+              expect {
+                post :payment, user_id: kayla.id, id: order.id
+              }.to change{Payment.count}
             }
 
             it 'return 200' do

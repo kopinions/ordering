@@ -29,6 +29,8 @@ class OrdersController < ApplicationController
 
   def payment
     if request.method == "POST"
+      payment = Payment.new(params.permit(:pay_type, :amount))
+      @order.payment = payment
       response.location = payment_user_order_path @user, @order
       return head 201
     end
