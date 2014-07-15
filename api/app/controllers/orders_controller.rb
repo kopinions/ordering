@@ -34,6 +34,9 @@ class OrdersController < ApplicationController
       response.location = payment_user_order_path @user, @order
       return head 201
     end
+    if @order.payment.nil?
+      return head 404
+    end
     @payment = @order.payment
   end
 

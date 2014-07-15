@@ -230,6 +230,16 @@ RSpec.describe OrdersController, :type => :controller do
               expect(response.header['Location']).to end_with("/users/#{kayla.id}/orders/#{order.id}/payment")
             end
           end
+
+          context 'get payment' do
+            before {
+              get :payment, user_id: kayla.id, id: order.id
+            }
+
+            it 'return 404' do
+              expect(response).to have_http_status(404)
+            end
+          end
         end
       end
     end
