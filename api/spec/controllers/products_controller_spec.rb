@@ -4,7 +4,7 @@ RSpec.describe ProductsController, :type => :controller do
   render_views
   describe 'GET index' do
     context 'with one product' do
-      let!(:apple) { Product.create(name: 'apple', description: 'little apple')}
+      let!(:apple) { Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
 
       before {
         expect(Product).to receive(:all).and_return([apple])
@@ -30,6 +30,10 @@ RSpec.describe ProductsController, :type => :controller do
 
       it 'contain description' do
         expect(@json[0]["description"]).to eq(apple.description)
+      end
+
+      it 'contain price' do
+        expect(@json[0]["price"]).to eq(apple.price.amount)
       end
     end
   end
