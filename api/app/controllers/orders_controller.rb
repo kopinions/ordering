@@ -25,6 +25,11 @@ class OrdersController < ApplicationController
     head 201
   end
 
+
+  def payment
+    head 200
+  end
+
   def order_params
     params.permit(:name, :address, :phone)
   end

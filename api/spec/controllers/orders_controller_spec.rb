@@ -166,4 +166,25 @@ RSpec.describe OrdersController, :type => :controller do
       end
     end
   end
+
+
+  describe 'Payment' do
+    context 'with kayla' do
+      let!(:kayla){ User.create(name: 'kayla')}
+      context 'with order' do
+        let!(:product) {Product.create(name: 'apple', description: 'little apple', price: Price.new(amount: 10))}
+        let!(:order_items) {[OrderItem.new(product: product, amount: 20, quantity: 2)]}
+        let!(:order){kayla.orders.create(name: 'sofia', address: 'shanghai', phone: '13256784321', order_items: order_items)}
+        context 'get payment' do
+          before {
+            get :payment, user_id: kayla.id, id: order.id
+          }
+
+          it 'return 200' do
+            expect(response).to have_http_status(200)
+          end
+        end
+      end
+    end
+  end
 end
