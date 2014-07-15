@@ -13,3 +13,9 @@ end
 node :created_at do |order|
     order.created_at
 end
+
+node :order_items do |order|
+    order.order_items.map do |item|
+        {amount: item.amount}
+    end
+end

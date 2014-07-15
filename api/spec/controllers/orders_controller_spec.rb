@@ -88,6 +88,10 @@ RSpec.describe OrdersController, :type => :controller do
         it 'return order create date' do
           expect(@json["created_at"]).not_to be_nil()
         end
+
+        it 'return order items' do
+          expect(@json["order_items"].length).to eq(1)
+        end
       end
     end
 
