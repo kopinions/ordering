@@ -131,7 +131,9 @@ RSpec.describe OrdersController, :type => :controller do
           before {
             expect(Order).to receive(:new).with({"name"=> "sofia", "address" => "chengdu", "phone" => "13898766789"}).and_call_original
             expect(OrderItem).to receive(:new).with(hash_including({quantity: 2, amount: 20.0})).and_call_original
-            post :create, user_id: kayla.id, name: 'sofia', address: 'chengdu', phone: '13898766789', order_items: [{product_id: apple.id, quantity: 2}]
+            expect {
+              post :create, user_id: kayla.id, name: 'sofia', address: 'chengdu', phone: '13898766789', order_items: [{product_id: apple.id, quantity: 2}]
+            }.to change{kayla.orders.count}
           }
 
           it 'return 201' do
