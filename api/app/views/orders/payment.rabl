@@ -4,5 +4,5 @@ node :uri do
 end
 
 node :payment do |payment|
-    attributes :amount
+    {uri: (payment_user_order_path @user, @order)}
 end
