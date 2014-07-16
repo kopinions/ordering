@@ -15,7 +15,7 @@ mediaType: application/json
                   "uri": "/products/1",
                   "name": "apple",
                   "description": "red apple",
-                  "currentPrice": 1.1
+                  "price": 1.1
                 }
               ]
   post:
@@ -27,7 +27,7 @@ mediaType: application/json
             type: string
           description:
             type: string
-          currentPrice:
+          price:
             type: number
     responses:
       201:
@@ -43,7 +43,7 @@ mediaType: application/json
                   "uri": "/products/1",
                   "name": "apple",
                   "description": "red apple",
-                  "current_price": 1.1,
+                  "price": 1.1,
                   "rating": 5
                 }
 /users:
@@ -56,7 +56,7 @@ mediaType: application/json
             example: |
               {
                 "name": "kayla",
-                "address": "beijing",
+                "address": "beijing"
                 "phone": "13200000000",
                 "order_item": [
                   {
@@ -75,6 +75,9 @@ mediaType: application/json
                   [
                     {
                       "uri": "/users/1/orders/1",
+                      "name": "kayla",
+                      "address": "beijing"
+                      "phone": "13912344321"
                       "total_price": 100,
                       "date": "2014-01-01"
                     }
@@ -90,8 +93,11 @@ mediaType: application/json
                   example: |
                     {
                       "uri": "/users/1/orders/1",
+                      "name": "kayla",
+                      "address": "beijing",
+                      "phone": "13912344321"
                       "total_price": 100,
-                      "date": "2014-01-01",
+                      "created_at": "2014-01-01"
                       "order_items": [
                         {
                           "product_id": 1,
@@ -124,6 +130,7 @@ mediaType: application/json
                          "payment": {
                            "uri": "/users/1/orders/1/payment"
                            "pay_type": "CASH",
-                           "amount": 100
+                           "amount": 100,
+                           "created_at": "2014-01-01"
                          }
                        }
